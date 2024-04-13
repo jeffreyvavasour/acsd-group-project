@@ -1,4 +1,4 @@
-h2 {
+h2, h3 {
   margin: 0;
 }
 
@@ -113,3 +113,7 @@ ul {
     color: #EDB95E;
     cursor: pointer;
   }
+
+.notes {
+  margin-bottom: 20px;
+}

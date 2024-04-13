@@ -29,9 +29,17 @@ function User(props) {
   };
 
   const getFavoriteRecipes = () => {
-    const favoriteRecipeIds = JSON.parse(
-      localStorage.getItem("favorite_recipes")
-    );
+    let favoriteRecipeIds = [];
+
+    const userData = JSON.parse(localStorage.getItem("users"));
+    const username = localStorage.getItem("username");
+    if (userData && username && userData.hasOwnProperty(username)) {
+      if (userData[username].hasOwnProperty("recipes")) {
+        favoriteRecipeIds = userData[username].recipes
+          .filter((recipe) => recipe.favorite === true)
+          .map((favorites) => favorites.recipeId);
+      }
+    }
 
     if (favoriteRecipeIds && favoriteRecipeIds.length > 0) {
       axios

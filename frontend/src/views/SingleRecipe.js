@@ -7,6 +7,7 @@ const SingleRecipe = ({ loggedIn }) => {
   const [recipe, setRecipe] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
+  const [notes, setNotes] = useState("");
   const { recipeId } = useParams();
 
   const getRecipe = async () => {
@@ -16,8 +17,63 @@ const SingleRecipe = ({ loggedIn }) => {
       .then((res) => {
         setRecipe(res.data);
         setIsLoading(false);
+        getNotes(res.data);
       })
       .catch((err) => setError(err));
+  };
+
+  const getNotes = (recipe) => {
+    const userData = JSON.parse(localStorage.getItem("users"));
+    const username = localStorage.getItem("username");
+    if (userData && username && userData.hasOwnProperty(username)) {
+      if (userData[username].hasOwnProperty("recipes")) {
+        const recipeIndex = userData[username].recipes.findIndex(
+          (r) => r.recipeId === recipe.id
+        );
+        if (recipeIndex !== -1) {
+          const recipeNotes = userData[username].recipes[recipeIndex].notes;
+          if (recipeNotes) {
+            setNotes(recipeNotes);
+          }
+        }
+      }
+    }
+  };
+
+  const handleNotesChange = (e) => {
+    e.preventDefault();
+    setNotes(e.target.value);
+  };
+
+  const saveNotes = (e) => {
+    e.preventDefault();
+    let userData = JSON.parse(localStorage.getItem("users"));
+    const username = localStorage.getItem("username");
+
+    if (userData && userData.length > 0 && username) {
+      const recipeIndex = userData[username].recipes.findIndex(
+        (r) => r.recipeId === recipe.id
+      );
+      if (recipeIndex !== -1) {
+        userData[username].recipes[recipeIndex].notes = notes;
+      } else {
+        userData[username].recipes.push({
+          recipeId: recipe.id,
+          notes: notes,
+          favorite: false,
+        });
+      }
+      localStorage.setItem("users", JSON.stringify(userData));
+    } else {
+      localStorage.setItem(
+        "users",
+        JSON.stringify({
+          [username]: {
+            recipes: [{ recipeId: recipe.id, notes: notes, favorite: false }],
+          },
+        })
+      );
+    }
   };
 
   useEffect(() => {
@@ -47,20 +103,29 @@ const SingleRecipe = ({ loggedIn }) => {
           <img src={recipe.image} alt={recipe.name} className="recipe-img" />
         </div>
         <br />
-        Ingredients
+        <h3>Ingredients</h3>
         <br />
         <ul className="ingredients">
           {recipe.ingredients.map((ingredient, index) => {
             return <li key={index}>{ingredient}</li>;
           })}
         </ul>
-        Instructions
+        <h3>Instructions</h3>
         <br />
         <ol className="instructions">
           {recipe.instructions.map((instruction, index) => {
             return <li key={index}>{instruction}</li>;
           })}
         </ol>
+        <h3>Notes</h3>
+        <textarea
+          cols="40"
+          rows="5"
+          className="notes"
+          value={notes}
+          onChange={handleNotesChange}
+        ></textarea>
+        <button onClick={saveNotes}>Save 💾</button>
       </div>
     );
   } else if (isLoading) {

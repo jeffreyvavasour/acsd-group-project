@@ -4,36 +4,60 @@ const FavoriteStar = ({ recipeId }) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   useEffect(() => {
-    let favoriteRecipes = JSON.parse(localStorage.getItem("favorite_recipes"));
-    if (favoriteRecipes && favoriteRecipes.length > 0) {
-      if (favoriteRecipes.includes(recipeId)) {
-        setIsFavorite(true);
-      } else {
-        setIsFavorite(false);
+    const userData = JSON.parse(localStorage.getItem("users"));
+    const username = localStorage.getItem("username");
+    if (userData && username && userData.hasOwnProperty(username)) {
+      if (userData[username].hasOwnProperty("recipes")) {
+        const recipeIndex = userData[username].recipes.findIndex(
+          (r) => r.recipeId === recipeId
+        );
+        if (recipeIndex !== -1) {
+          setIsFavorite(userData[username].recipes[recipeIndex].favorite);
+        }
       }
     }
   }, []);
 
   const handleFavorite = (e) => {
     e.preventDefault();
-    let favoriteRecipes = JSON.parse(localStorage.getItem("favorite_recipes"));
-    if (favoriteRecipes && favoriteRecipes.length > 0) {
-      if (favoriteRecipes.includes(recipeId)) {
-        if (favoriteRecipes.length === 1) {
-          favoriteRecipes = [];
+    let userData = JSON.parse(localStorage.getItem("users"));
+    const username = localStorage.getItem("username");
+    if (userData && username && userData.hasOwnProperty(username)) {
+      if (userData[username].hasOwnProperty("recipes")) {
+        const recipeIndex = userData[username].recipes.findIndex(
+          (r) => r.recipeId === recipeId
+        );
+        if (recipeIndex !== -1) {
+          userData[username].recipes[recipeIndex].favorite = !isFavorite;
         } else {
-          favoriteRecipes.splice(favoriteRecipes.indexOf(recipeId), 1);
+          userData[username].recipes.push({
+            recipeId: recipeId,
+            notes: "",
+            favorite: !isFavorite,
+          });
         }
-        setIsFavorite(false);
       } else {
-        favoriteRecipes.push(recipeId);
-        setIsFavorite(true);
+        userData[username].recipes = [
+          { recipeId: recipeId, notes: "", favorite: !isFavorite },
+        ];
       }
-      localStorage.setItem("favorite_recipes", JSON.stringify(favoriteRecipes));
     } else {
-      localStorage.setItem("favorite_recipes", JSON.stringify([recipeId]));
-      setIsFavorite(true);
+      if (!username) {
+        window.alert("Something went wrong. Please try again later. 😭");
+      } else if (!userData) {
+        userData = {
+          [username]: {
+            recipes: [{ recipeId: recipeId, notes: "", favorite: !isFavorite }],
+          },
+        };
+      } else if (!userData.hasOwnProperty(username)) {
+        userData[username] = {
+          recipes: [{ recipeId: recipeId, notes: "", favorite: !isFavorite }],
+        };
+      }
     }
+    localStorage.setItem("users", JSON.stringify(userData));
+    setIsFavorite(!isFavorite);
   };
 
   return (
