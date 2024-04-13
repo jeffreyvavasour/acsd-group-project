@@ -97,22 +97,33 @@ ul {
   color: #111;
 }
 
-.star {
+.icon {
   width: 20px; height: 20px;
   line-height: 1rem;
   display: block;
-  font-size: 1.5rem;
+  font-size: 1rem;
   position: absolute;
-  right: 30px; top: 30px;
+  right: 60px; top: 30px;
   background-color: #01010199;
   border-radius: 50%;
   color: #eee;
 }
 
-  .favorite, .star:hover {
-    color: #EDB95E;
-    cursor: pointer;
-  }
+.star {
+  font-size: 1.5rem;
+  right: 30px; top: 30px;
+}
+
+.favorite, .star:hover {
+  color: #EDB95E;
+  cursor: pointer;
+}
+
+.notes-icon {
+  font-size: 1rem;
+  right: 60px; top: 30px;
+}
+
 
 .notes {
   margin-bottom: 20px;

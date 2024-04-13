@@ -50,30 +50,39 @@ const SingleRecipe = ({ loggedIn }) => {
     let userData = JSON.parse(localStorage.getItem("users"));
     const username = localStorage.getItem("username");
 
-    if (userData && userData.length > 0 && username) {
-      const recipeIndex = userData[username].recipes.findIndex(
-        (r) => r.recipeId === recipe.id
-      );
-      if (recipeIndex !== -1) {
-        userData[username].recipes[recipeIndex].notes = notes;
-      } else {
-        userData[username].recipes.push({
-          recipeId: recipe.id,
-          notes: notes,
-          favorite: false,
-        });
+    if (userData && username && userData.hasOwnProperty(username)) {
+      if (userData[username].hasOwnProperty("recipes")) {
+        const recipeIndex = userData[username].recipes.findIndex(
+          (r) => r.recipeId === recipe.id
+        );
+        if (recipeIndex !== -1) {
+          userData[username].recipes[recipeIndex].notes = notes;
+        } else {
+          userData[username].recipes.push({
+            recipeId: recipe.id,
+            notes: notes,
+            favorite: false,
+          });
+        }
+        localStorage.setItem("users", JSON.stringify(userData));
+      }
+    } else {
+      if (!username) {
+        window.alert("Something went wrong. Please try again later. 😭");
+      } else if (!userData) {
+        userData = {
+          [username]: {
+            recipes: [{ recipeId: recipeId, notes: notes, favorite: false }],
+          },
+        };
+      } else if (!userData.hasOwnProperty(username)) {
+        userData[username] = {
+          recipes: [{ recipeId: recipeId, notes: notes, favorite: false }],
+        };
       }
       localStorage.setItem("users", JSON.stringify(userData));
-    } else {
-      localStorage.setItem(
-        "users",
-        JSON.stringify({
-          [username]: {
-            recipes: [{ recipeId: recipe.id, notes: notes, favorite: false }],
-          },
-        })
-      );
     }
+    window.alert("Notes successfully saved!");
   };
 
   useEffect(() => {

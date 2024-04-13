@@ -62,7 +62,7 @@ const FavoriteStar = ({ recipeId }) => {
 
   return (
     <span
-      className={`star ${isFavorite && "favorite"}`}
+      className={`icon star ${isFavorite && "favorite"}`}
       onClick={handleFavorite}
       title={isFavorite ? "Remove from favorites" : "Add to favorites"}
     >
