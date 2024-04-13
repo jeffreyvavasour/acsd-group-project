@@ -8,6 +8,8 @@ import Logout from "./views/Logout";
 import Register from "./views/Register";
 import User from "./views/User";
 import Recipes from "./views/Recipes";
+import SingleRecipe from "./views/SingleRecipe";
+import "./App.css";
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false);
@@ -51,6 +53,7 @@ function App() {
           <Route path="register/*" element={<Register loggedIn={loggedIn} />} />
           <Route path="user/*" element={<User loggedIn={loggedIn} />} />
           <Route path="/recipes" element={<Recipes />} />
+          <Route path="/recipes/:recipeId" element={<SingleRecipe />} />
         </Routes>
       </div>
     </Router>
