@@ -14,6 +14,10 @@ button {
   overflow-x: hidden;
 }
 
+.body-container {
+  padding: 20px;
+}
+
 .generic {
   text-align: center;
   padding: 10px;
@@ -24,6 +28,7 @@ button {
 .recipes-container {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -60,9 +65,10 @@ button {
 }
 
 .full-recipe {
-  width: 100vw; height: 100vh;
+  width: 100vw; height: auto;
   display: flex;
   flex-flow: column wrap;
+  align-items: center;
 }
 
 .recipe-img-container {
@@ -102,4 +108,5 @@ button {
 
   .favorite, .star:hover {
     color: #EDB95E;
+    cursor: pointer;
   }

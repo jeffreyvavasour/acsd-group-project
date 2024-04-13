@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Recipe from "../components/Recipe";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
-const Recipes = () => {
+const Recipes = ({ loggedIn }) => {
   const [recipes, setRecipes] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
@@ -22,8 +22,14 @@ const Recipes = () => {
   };
 
   useEffect(() => {
-    getRecipes();
+    if (loggedIn) {
+      getRecipes();
+    }
   }, []);
+
+  if (!loggedIn) {
+    return <Navigate to={"/login"} />;
+  }
 
   if (error) {
     return (

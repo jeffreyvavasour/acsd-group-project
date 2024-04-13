@@ -1,24 +1,44 @@
-import { useParams } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import FavoriteStar from "../components/FavoriteStar";
 import axios from "axios";
 
-const SingleRecipe = () => {
+const SingleRecipe = ({ loggedIn }) => {
   const [recipe, setRecipe] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
   const { recipeId } = useParams();
 
   const getRecipe = async () => {
+    setIsLoading(true);
     await axios
       .get(`https://dummyjson.com/recipes/${recipeId}`)
-      .then((res) => setRecipe(res.data))
-      .catch((err) => console.error(err));
+      .then((res) => {
+        setRecipe(res.data);
+        setIsLoading(false);
+      })
+      .catch((err) => setError(err));
   };
 
   useEffect(() => {
-    getRecipe();
+    if (loggedIn) {
+      getRecipe();
+    }
   }, []);
 
-  if (recipe) {
+  if (!loggedIn) {
+    return <Navigate to={"/login"} />;
+  }
+
+  if (error) {
+    return (
+      <div className="generic">
+        {error.message}
+        <br />
+        Please try again later. 😭
+      </div>
+    );
+  } else if (recipe) {
     return (
       <div className="full-recipe">
         <h2>{recipe.name}</h2>
@@ -41,6 +61,14 @@ const SingleRecipe = () => {
             return <li key={index}>{instruction}</li>;
           })}
         </ol>
+      </div>
+    );
+  } else if (isLoading) {
+    return <div className="generic">Loading recipe... ⏳</div>;
+  } else {
+    return (
+      <div className="generic">
+        Something went wrong. Please try again later. 😭
       </div>
     );
   }
