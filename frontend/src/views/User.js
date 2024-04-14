@@ -2,11 +2,17 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Navigate, Routes, Route, Link } from "react-router-dom";
 
+// View to show a user page
 function User({ loggedIn }) {
+  // State to store the current username
   const [username, setUsername] = useState("");
+  // State to flag whether the data is being loaded
   const [isLoading, setIsLoading] = useState(true);
+  // State to keep information about any errors
   const [error, setError] = useState("");
+  // State to keep information of user's favorite recipes
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+  // State to keep information of user's notes
   const [userNotes, setUserNotes] = useState([]);
 
   useEffect(() => {
@@ -15,6 +21,7 @@ function User({ loggedIn }) {
     getNotes();
   }, []);
 
+  // Function to get the current user's username
   const getUsername = async function () {
     setIsLoading(true);
     try {
@@ -29,20 +36,27 @@ function User({ loggedIn }) {
     }
   };
 
+  // Function to get the current user's favorite recipes
   const getFavoriteRecipes = () => {
     let favoriteRecipeIds = [];
 
     const userData = JSON.parse(localStorage.getItem("users"));
     const username = localStorage.getItem("username");
+
+    // Check if the user data and username exist in localStorage
     if (userData && username && userData.hasOwnProperty(username)) {
+      // Check if the user recipes collection exists
       if (userData[username].hasOwnProperty("recipes")) {
+        // Find only favorite recipes and save the IDs in the favoriteRecipeIds variable
         favoriteRecipeIds = userData[username].recipes
           .filter((recipe) => recipe.favorite === true)
           .map((favorites) => favorites.recipeId);
       }
     }
 
+    // Check if there are any favorite recipes
     if (favoriteRecipeIds && favoriteRecipeIds.length > 0) {
+      // Call the API for every favorite recipe
       axios
         .all(
           favoriteRecipeIds.map((id) =>
@@ -50,6 +64,7 @@ function User({ loggedIn }) {
           )
         )
         .then(
+          // Save the recipes in the favoriteRecipes state
           axios.spread((...arr) => {
             setFavoriteRecipes(arr.map((res) => res.data));
           })
@@ -60,13 +75,18 @@ function User({ loggedIn }) {
     }
   };
 
+  // Function to get the current user's recipes with notes
   const getNotes = () => {
     let notes = [];
 
     const userData = JSON.parse(localStorage.getItem("users"));
     const username = localStorage.getItem("username");
+
+    // Check if the user data and username exist in localStorage
     if (userData && username && userData.hasOwnProperty(username)) {
+      // Check if the user recipes collection exists
       if (userData[username].hasOwnProperty("recipes")) {
+        // Find only recipes with notes and map the recipe IDs and notes in the notes variable
         notes = userData[username].recipes
           .filter((recipe) => recipe.notes)
           .map((recipe) => {
@@ -75,7 +95,9 @@ function User({ loggedIn }) {
       }
     }
 
+    // Check if there are any recipes with notes
     if (notes && notes.length > 0) {
+      // Call the API for every recipe with notes
       axios
         .all(
           notes.map((note) =>
@@ -83,6 +105,7 @@ function User({ loggedIn }) {
           )
         )
         .then(
+          // Merge the response recipes with the respective notes and save the array in userNotes state
           axios.spread((...arr) => {
             let recipes = [...arr.map((res) => res.data)];
             recipes.forEach((recipe, index) => {
@@ -98,6 +121,7 @@ function User({ loggedIn }) {
   };
 
   if (error) {
+    // Render error message
     return (
       <div className="generic">
         {error.message}
@@ -106,6 +130,7 @@ function User({ loggedIn }) {
       </div>
     );
   } else if (loggedIn) {
+    // Render the user page for logged in user
     if (username) {
       return (
         <div>
@@ -114,6 +139,9 @@ function User({ loggedIn }) {
             <h3>Your favorite recipes</h3>
             {favoriteRecipes && favoriteRecipes.length > 0 ? (
               <ul className="favorite-recipes-container">
+                {
+                  // Render user's favorite recipes
+                }
                 {favoriteRecipes.map((recipe, index) => {
                   return (
                     <Link
@@ -142,6 +170,9 @@ function User({ loggedIn }) {
               </p>
             )}
             <h3>Your notes</h3>
+            {
+              // Render user's recipes with notes
+            }
             {userNotes && userNotes.length > 0 ? (
               <ul className="favorite-recipes-container">
                 {userNotes.map((recipe, index) => {
@@ -177,8 +208,10 @@ function User({ loggedIn }) {
         </div>
       );
     } else if (isLoading) {
+      // Render the loading information
       return <div className="generic">Loading data... ⏳</div>;
     } else {
+      // Render a generic error if everything fails
       return (
         <div className="generic">
           Something went wrong. Please try again later. 😭
