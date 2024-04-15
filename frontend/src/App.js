@@ -13,7 +13,7 @@ import SingleRecipe from "./views/SingleRecipe";
 import "./App.css";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState();
 
   useEffect(() => {
     getTokenStatus();
@@ -39,23 +39,31 @@ function App() {
 
   return (
     <Router>
-      <div>
+      <div className="main-container">
         <Navbar loggedIn={loggedIn} />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route
-            path="login/*"
-            element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
-          />
-          <Route
-            path="logout/*"
-            element={<Logout setLoggedIn={setLoggedIn} />}
-          />
-          <Route path="register/*" element={<Register loggedIn={loggedIn} />} />
-          <Route path="user/*" element={<User loggedIn={loggedIn} />} />
-          <Route path="/recipes" element={<Recipes />} />
-          <Route path="/recipes/:recipeId" element={<SingleRecipe />} />
-        </Routes>
+        <div className="body-container">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="login/*"
+              element={<Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}
+            />
+            <Route
+              path="logout/*"
+              element={<Logout setLoggedIn={setLoggedIn} />}
+            />
+            <Route
+              path="register/*"
+              element={<Register loggedIn={loggedIn} />}
+            />
+            <Route path="user/*" element={<User loggedIn={loggedIn} />} />
+            <Route path="/recipes" element={<Recipes loggedIn={loggedIn} />} />
+            <Route
+              path="/recipes/:recipeId"
+              element={<SingleRecipe loggedIn={loggedIn} />}
+            />
+          </Routes>
+        </div>
       </div>
     </Router>
   );

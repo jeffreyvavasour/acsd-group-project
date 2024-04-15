@@ -1,4 +1,4 @@
-h2 {
+h2, h3, h4, h5 {
   margin: 0;
 }
 
@@ -9,9 +9,18 @@ button {
   border-radius: 10px;
 }
 
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
 .main-container {
   width: 100vw; height: 100vh;
   overflow-x: hidden;
+}
+
+.body-container {
+  padding: 20px;
 }
 
 .generic {
@@ -24,6 +33,7 @@ button {
 .recipes-container {
   display: flex;
   flex-flow: row wrap;
+  justify-content: center;
   gap: 10px;
 }
 
@@ -60,9 +70,10 @@ button {
 }
 
 .full-recipe {
-  width: 100vw; height: 100vh;
+  width: 100vw; height: auto;
   display: flex;
   flex-flow: column wrap;
+  align-items: center;
 }
 
 .recipe-img-container {
@@ -79,27 +90,50 @@ button {
 
 .ingredients {
   text-align: left;
-  padding: 0;
-  list-style-type: none;
 }
 
-.link {
+.link, a {
   text-decoration: none;
   color: #111;
 }
 
-.star {
+.icon {
   width: 20px; height: 20px;
   line-height: 1rem;
   display: block;
-  font-size: 1.5rem;
+  font-size: 1rem;
   position: absolute;
-  right: 30px; top: 30px;
+  right: 60px; top: 30px;
   background-color: #01010199;
   border-radius: 50%;
   color: #eee;
 }
 
-  .favorite, .star:hover {
-    color: #EDB95E;
-  }
+.star {
+  font-size: 1.5rem;
+  right: 30px; top: 30px;
+}
+
+.favorite, .star:hover {
+  color: #EDB95E;
+  cursor: pointer;
+}
+
+.notes-icon {
+  font-size: 1rem;
+  right: 60px; top: 30px;
+}
+
+.notes {
+  margin-bottom: 20px;
+}
+
+.favorite-recipes-container {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+}
+
+.notes-container {
+  text-align: left;
+}
