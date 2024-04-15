@@ -21,8 +21,8 @@ function Navbar(props) {
       <div id="nav">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
-            <Link to="/" className="navbar-brand">
-              Logo
+            <Link to="/" className="navbar-brand font-lobster">
+              YummyMoney
             </Link>
             <button
               className="navbar-toggler"
@@ -90,8 +90,8 @@ function Navbar(props) {
       <div id="nav">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
-            <Link to="/" className="navbar-brand">
-              Logo
+            <Link to="/" className="navbar-brand font-lobster">
+              YummyMoney
             </Link>
             <button
               className="navbar-toggler"

@@ -1,4 +1,12 @@
-h2, h3, h4, h5 {
+@import url("https://fonts.googleapis.com/css?family=Lobster");
+h1 {
+  padding-bottom: 2rem;
+}
+
+h2,
+h3,
+h4,
+h5 {
   margin: 0;
 }
 
@@ -9,13 +17,107 @@ button {
   border-radius: 10px;
 }
 
+.btn-action {
+  background-color: #489820;
+  border: 1px solid white;
+  border-radius: 1.5rem;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin: 1rem 1rem 0 0;
+  display: inline-block;
+  width: 150px;
+}
+
+.btn-action:hover {
+  background-color: white;
+  border: 1px solid #489820;
+  color: #489820;
+}
+
 ul {
   list-style-type: none;
   padding: 0;
 }
 
+img {
+  max-height: 70vh;
+}
+
+.h1-title {
+  font-size: 3.5rem;
+}
+
+.home-info {
+  padding: 4rem;
+}
+
+.home-info p {
+  width: 55%;
+  font-size: 1.25rem;
+}
+
+.font-lobster {
+  font-family: "Lobster", sans-serif;
+  color: #489820;
+}
+
+.navbar-brand {
+  font-size: 2rem;
+}
+
+.navbar-brand:hover {
+  color: #489820;
+}
+
+.carousel img {
+  object-fit: cover;
+  padding: 0;
+}
+
+.section-quote {
+  background-color: #e4fed7;
+  color: #489820;
+  padding: 4rem 2rem;
+}
+
+.quote {
+  font-size: 4rem;
+  width: 60%;
+  text-align: center;
+}
+
+.section-research {
+  padding: 4rem 2rem;
+}
+
+.section-research p {
+  padding-top: 1rem;
+  width: 55%;
+}
+
+.center-text {
+  display: flex;
+  justify-content: center;
+}
+
+.research-hr {
+  width: 100px;
+  background-color: #489820;
+  height: 4px;
+  margin: 1rem 0 2rem 0;
+}
+
+.nav-link {
+  color: #82dd55;
+}
+
+.nav-link:hover {
+  color: #489820;
+}
+
 .main-container {
-  width: 100vw; height: 100vh;
+  width: 100vw;
+  height: 100vh;
   overflow-x: hidden;
 }
 
@@ -45,11 +147,12 @@ ul {
   background-color: #ebebeb;
 }
 
-  button:hover, .recipe:hover {
-    box-shadow: 0 0 10px #01010150;
-    outline: 1px solid #01010150;
-    cursor: pointer;
-  }
+button:hover,
+.recipe:hover {
+  box-shadow: 0 0 10px #01010150;
+  outline: 1px solid #01010150;
+  cursor: pointer;
+}
 
 .difficulty {
   padding: 3px 10px;
@@ -58,19 +161,20 @@ ul {
 }
 
 .easy {
-  background-color: #82DD55;
+  background-color: #82dd55;
 }
 
 .medium {
-  background-color: #EDB95E;
+  background-color: #edb95e;
 }
 
 .difficult {
-  background-color: #E23636;
+  background-color: #e23636;
 }
 
 .full-recipe {
-  width: 100vw; height: auto;
+  width: 100vw;
+  height: auto;
   display: flex;
   flex-flow: column wrap;
   align-items: center;
@@ -92,18 +196,21 @@ ul {
   text-align: left;
 }
 
-.link, a {
+.link,
+a {
   text-decoration: none;
   color: #111;
 }
 
 .icon {
-  width: 20px; height: 20px;
+  width: 20px;
+  height: 20px;
   line-height: 1rem;
   display: block;
   font-size: 1rem;
   position: absolute;
-  right: 60px; top: 30px;
+  right: 60px;
+  top: 30px;
   background-color: #01010199;
   border-radius: 50%;
   color: #eee;
@@ -111,17 +218,20 @@ ul {
 
 .star {
   font-size: 1.5rem;
-  right: 30px; top: 30px;
+  right: 30px;
+  top: 30px;
 }
 
-.favorite, .star:hover {
-  color: #EDB95E;
+.favorite,
+.star:hover {
+  color: #edb95e;
   cursor: pointer;
 }
 
 .notes-icon {
   font-size: 1rem;
-  right: 60px; top: 30px;
+  right: 60px;
+  top: 30px;
 }
 
 .notes {
