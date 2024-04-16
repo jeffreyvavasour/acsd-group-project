@@ -44,7 +44,14 @@ img {
 }
 
 .h1-title {
-  font-size: 3.5rem;
+  font-size: 2.5rem;
+  /* mq 3.5rem */
+}
+
+@media only screen and (min-width: 992px) {
+  .h1-title {
+    font-size: 3.5rem;
+  }
 }
 
 .home-info {
@@ -52,8 +59,14 @@ img {
 }
 
 .home-info p {
-  width: 55%;
+  width: 100%;
   font-size: 1.25rem;
+}
+
+@media only screen and (min-width: 992px) {
+  .home-info p {
+    width: 55%;
+  }
 }
 
 .font-lobster {
@@ -74,6 +87,11 @@ img {
   padding: 0;
 }
 
+.carousel-text {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+}
+
 .section-quote {
   background-color: #e4fed7;
   color: #489820;
@@ -92,7 +110,14 @@ img {
 
 .section-research p {
   padding-top: 1rem;
-  width: 55%;
+  /* mq 55% */
+  width: 100%;
+}
+
+@media only screen and (min-width: 992px) {
+  .section-research p {
+    width: 55%;
+  }
 }
 
 .center-text {
@@ -108,11 +133,29 @@ img {
 }
 
 .nav-link {
-  color: #82dd55;
+  color: #489820;
 }
 
 .nav-link:hover {
-  color: #489820;
+  color: #82dd55;
+}
+
+.form {
+  width: fit-content;
+  padding: 4rem 3rem;
+  background-color: #e4fed7;
+  border-radius: 1rem;
+}
+
+.form * {
+  margin-bottom: 1.5rem;
+}
+
+.username h5,
+.password h5,
+.username input,
+.password input {
+  margin-bottom: 0;
 }
 
 .main-container {

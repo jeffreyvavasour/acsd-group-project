@@ -47,19 +47,23 @@ function Register(props) {
     );
   } else {
     return (
-      <div>
+      <div className="form">
         <h4>{message}</h4>
-        <h5>Username</h5>
-        <input value={username} onChange={handleUsernameInput}></input>
-        <h5>Password</h5>
-        <input
-          value={password}
-          type="password"
-          onChange={handlePasswordInput}
-        ></input>
-        <br />
-        <br />
-        <button onClick={handleSubmit}>Register</button>
+        <div className="username">
+          <h5>Username</h5>
+          <input value={username} onChange={handleUsernameInput}></input>
+        </div>
+        <div className="password">
+          <h5>Password</h5>
+          <input
+            value={password}
+            type="password"
+            onChange={handlePasswordInput}
+          ></input>
+        </div>
+        <button onClick={handleSubmit} className="btn-action">
+          Register
+        </button>
       </div>
     );
   }
