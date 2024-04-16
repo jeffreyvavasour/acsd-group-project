@@ -297,14 +297,19 @@ a {
   margin-bottom: 20px;
 }
 
-.favorite-recipes-container {
+.favorite-recipes-container, .recipes-with-notes-container {
   display: flex;
   flex-flow: row wrap;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .notes-container {
   text-align: left;
+}
+
+.user-view h3 {
+  margin-top: 40px;
 }
 
 @media only screen and (min-width: 992px) {

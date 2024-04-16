@@ -133,8 +133,8 @@ function User({ loggedIn }) {
     // Render the user page for logged in user
     if (username) {
       return (
-        <div>
-          <h3>Welcome back {username}!</h3>
+        <div className="user-view">
+          <h2>Welcome back {username}!</h2>
           <div>
             <h3>Your favorite recipes</h3>
             {favoriteRecipes && favoriteRecipes.length > 0 ? (
@@ -174,7 +174,7 @@ function User({ loggedIn }) {
               // Render user's recipes with notes
             }
             {userNotes && userNotes.length > 0 ? (
-              <ul className="favorite-recipes-container">
+              <ul className="recipes-with-notes-container">
                 {userNotes.map((recipe, index) => {
                   return (
                     <Link
