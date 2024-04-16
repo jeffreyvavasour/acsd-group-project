@@ -135,35 +135,45 @@ const SingleRecipe = ({ loggedIn }) => {
     // Render the recipe
     return (
       <div className="full-recipe">
-        <h2>{recipe.name}</h2>
+        <div className="recipe-title">
+          <h2>{recipe.name}</h2>
+        </div>
         <div className="recipe-img-container">
           <FavoriteStar recipeId={recipe.id} />
           <img src={recipe.image} alt={recipe.name} className="recipe-img" />
         </div>
         <br />
-        <h3>Ingredients</h3>
-        <br />
-        <ul className="ingredients">
-          {recipe.ingredients.map((ingredient, index) => {
-            return <li key={index}>{ingredient}</li>;
-          })}
-        </ul>
-        <h3>Instructions</h3>
-        <br />
-        <ol className="instructions">
-          {recipe.instructions.map((instruction, index) => {
-            return <li key={index}>{instruction}</li>;
-          })}
-        </ol>
-        <h3>Notes</h3>
-        <textarea
-          cols="40"
-          rows="5"
-          className="notes"
-          value={notes}
-          onChange={handleNotesChange}
-        ></textarea>
-        <button onClick={saveNotes}>Save 💾</button>
+        <div className="recipe-ingredients">
+          <h3>Ingredients</h3>
+          <br />
+          <ul className="ingredients">
+            {recipe.ingredients.map((ingredient, index) => {
+              return <li key={index}>{ingredient}</li>;
+            })}
+          </ul>
+        </div>
+        <div className="recipe-instructions">
+          <h3>Instructions</h3>
+          <br />
+          <ol className="instructions">
+            {recipe.instructions.map((instruction, index) => {
+              return <li key={index}>{instruction}</li>;
+            })}
+          </ol>
+        </div>
+        <div className="recipe-notes">
+          <h3>Notes</h3>
+          <textarea
+            cols="40"
+            rows="5"
+            className="notes"
+            value={notes}
+            onChange={handleNotesChange}
+          ></textarea>
+        </div>
+        <div className="recipe-action-btn">
+          <button onClick={saveNotes}>Save 💾</button>
+        </div>
       </div>
     );
   } else if (isLoading) {
