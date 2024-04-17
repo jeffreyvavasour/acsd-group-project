@@ -9,7 +9,7 @@ function Home(props) {
       <section className="home-info">
         <div>
           <h1>
-            <span className="font-lobster h1-title">YummyMoney</span> is here to
+            <span className="font-alt h1-title">YummyMoney</span> is here to
             help!
           </h1>
           <p>
@@ -33,7 +33,7 @@ function Home(props) {
 
       <section className="section-quote">
         <div className="center-text">
-          <blockquote className="quote font-lobster">
+          <blockquote className="quote font-alt">
             "Paths to better health are not always paved with money"
           </blockquote>
         </div>

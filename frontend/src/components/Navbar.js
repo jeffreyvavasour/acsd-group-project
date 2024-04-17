@@ -21,7 +21,7 @@ function Navbar(props) {
       <div id="nav">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
-            <Link to="/" className="navbar-brand font-lobster">
+            <Link to="/" className="navbar-brand font-alt">
               YummyMoney
             </Link>
             <button
@@ -77,20 +77,13 @@ function Navbar(props) {
           </div>
         </nav>
       </div>
-
-      // <nav>
-      //   <Link to="/">Home</Link> |&nbsp;
-      //   <Link to="/user">User</Link> |&nbsp;
-      //   <Link to="/recipes">Recipes</Link> |&nbsp;
-      //   <Link to="/logout">Logout</Link>
-      // </nav>
     );
   } else {
     return (
       <div id="nav">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">
           <div className="container-fluid">
-            <Link to="/" className="navbar-brand font-lobster">
+            <Link to="/" className="navbar-brand font-alt">
               YummyMoney
             </Link>
             <button
@@ -137,12 +130,6 @@ function Navbar(props) {
           </div>
         </nav>
       </div>
-
-      // <nav>
-      //   <Link to="/">Home</Link> |&nbsp;
-      //   <Link to="/register">Register</Link> |&nbsp;
-      //   <Link to="/login">Login</Link>
-      // </nav>
     );
   }
 }

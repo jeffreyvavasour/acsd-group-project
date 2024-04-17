@@ -1,4 +1,19 @@
 @import url("https://fonts.googleapis.com/css?family=Lobster");
+@import url("https://fonts.googleapis.com/css?family=Lora");
+@import url("https://fonts.googleapis.com/css?family=Inter");
+body {
+  font-family: "Inter", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lora", sans-serif;
+}
+
 h1 {
   padding-bottom: 2rem;
 }
@@ -68,7 +83,7 @@ img {
     width: 55%;
   }
 }
-.font-lobster {
+.font-alt {
   font-family: "Lobster", sans-serif;
   color: rgb(72, 152, 32);
 }
