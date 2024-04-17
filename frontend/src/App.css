@@ -15,6 +15,7 @@ button {
   background-color: #ebebeb;
   border: none;
   border-radius: 10px;
+  transition: all 0.3s ease-in-out;
 }
 
 .btn-action {
@@ -26,6 +27,7 @@ button {
   margin: 1rem 1rem 0 0;
   display: inline-block;
   width: 150px;
+  transition: all 0.3s ease-in-out;
 }
 
 .btn-action:hover {
@@ -47,7 +49,7 @@ img {
   font-size: 2.5rem;
 }
 
-@media only screen and (min-width: 992px) {
+@media screen and (min-width: 992px) {
   .h1-title {
     font-size: 3.5rem;
   }
@@ -61,7 +63,7 @@ img {
   font-size: 1.25rem;
 }
 
-@media only screen and (min-width: 992px) {
+@media screen and (min-width: 992px) {
   .home-info p {
     width: 55%;
   }
@@ -111,7 +113,7 @@ img {
   width: 100%;
 }
 
-@media only screen and (min-width: 992px) {
+@media screen and (min-width: 992px) {
   .section-research p {
     width: 55%;
   }
@@ -130,6 +132,7 @@ img {
 
 .nav-link {
   color: rgb(72, 152, 32);
+  transition: all 0.3s ease-in-out;
 }
 
 .nav-link:hover {
@@ -199,6 +202,7 @@ img {
   padding: 10px;
   text-align: center;
   background-color: #ebebeb;
+  transition: all 0.3s ease-in-out;
 }
 
 button:hover,
@@ -254,6 +258,7 @@ button:hover,
 a {
   text-decoration: none;
   color: #111;
+  transition: all 0.3s ease-in-out;
 }
 
 a:hover {
@@ -278,6 +283,7 @@ a:hover {
   font-size: 1.5rem;
   right: 30px;
   top: 30px;
+  transition: all 0.3s ease-in-out;
 }
 
 .favorite,
@@ -312,7 +318,7 @@ a:hover {
   margin-top: 40px;
 }
 
-@media only screen and (min-width: 992px) {
+@media screen and (min-width: 992px) {
   .full-recipe {
     max-width: 100%;
     display: grid;
