@@ -53,6 +53,7 @@ img {
     font-size: 3.5rem;
   }
 }
+
 .home-info {
   padding: 4rem;
 }
@@ -67,6 +68,7 @@ img {
     width: 55%;
   }
 }
+
 .font-lobster {
   font-family: "Lobster", sans-serif;
   color: #489820;
@@ -117,6 +119,7 @@ img {
     width: 55%;
   }
 }
+
 .center-text {
   display: flex;
   justify-content: center;
@@ -270,7 +273,7 @@ a:hover {
   position: absolute;
   right: 60px;
   top: 30px;
-  background-color: rgba(1, 1, 1, 0.6);
+  background-color: #01010199;
   border-radius: 50%;
   color: #eee;
 }
@@ -320,24 +323,23 @@ a:hover {
     grid-column-gap: 0px;
     grid-row-gap: 0px;
   }
+
   .recipe-title {
-    grid-area: 1/2/2/4;
+    grid-area: 1 / 2 / 2 / 4;
   }
   .recipe-img-container {
-    grid-area: 2/1/3/2;
+    grid-area: 2 / 1 / 3 / 2;
   }
   .recipe-ingredients {
-    grid-area: 2/2/3/4;
+    grid-area: 2 / 2 / 3 / 4;
   }
   .recipe-instructions {
-    grid-area: 3/2/4/4;
+    grid-area: 3 / 2 / 4 / 4;
   }
   .recipe-notes {
-    grid-area: 4/2/5/4;
+    grid-area: 4 / 2 / 5 / 4;
   }
   .recipe-action-btn {
-    grid-area: 5/2/6/4;
+    grid-area: 5 / 2 / 6 / 4;
   }
 }
-
-/*# sourceMappingURL=App.css.map */
