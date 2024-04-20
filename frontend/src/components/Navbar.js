@@ -2,12 +2,17 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 function Navbar(props) {
+  // State to track logged in status
   const [loggedIn, setLoggedIn] = useState(false);
 
+  // Keeps track of loggedIn variable in the 'props' object
+  // calls funciton when state changes
   useEffect(() => {
     setLoggedInStatus();
   }, [props.loggedIn]);
 
+  // Checks if user is logged in through the 'props' object
+  // sets logged in status to true if user is logged in and vice versa
   const setLoggedInStatus = function () {
     if (props.loggedIn) {
       setLoggedIn(true);
@@ -16,6 +21,7 @@ function Navbar(props) {
     }
   };
 
+  // Returns nav with Home, User, Recipes and Logout links if user is logged in
   if (loggedIn) {
     return (
       <div id="nav">
@@ -79,6 +85,7 @@ function Navbar(props) {
       </div>
     );
   } else {
+    // returns nav with Home, Register and Login links if user is not logged in
     return (
       <div id="nav">
         <nav className="navbar navbar-expand-lg bg-body-tertiary">

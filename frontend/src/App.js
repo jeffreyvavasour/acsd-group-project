@@ -13,12 +13,13 @@ import SingleRecipe from "./views/SingleRecipe";
 import "./App.css";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState();
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
     getTokenStatus();
   }, []);
 
+  // Sets logged in status to true if token is in local storage
   const getTokenStatus = async function () {
     try {
       var token = localStorage.getItem("token");

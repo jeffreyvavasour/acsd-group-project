@@ -1,43 +1,36 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/style.css" />
+  </head>
 
-<head>
-    <title>
-        <%= title %>
-    </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-</head>
-
-<body>
-    <h1>
-        <%= title %>
-    </h1>
+  <body>
+    <h1><%= title %></h1>
     <h2>Edit Todo</h2>
     <form action="/edit" method="post">
-        <input type="text" name="task" value="<%= todo %>">
-        <input id="currentAcc" type="hidden" name="currentAcc">
-        <% if(Boolean(JSON.parse(completed))) { %>
-            <input type="checkbox" name="completed" checked="true" >
-        <% } else { %>
-            <input type="checkbox" name="completed" >
-        <% } %>
-          
-        <input type="hidden" name="todo_id" value="<%= todo_id %>">
-        <button type="submit">Update Todo</button>
+      <input type="text" name="task" value="<%= todo %>" />
+      <input id="currentAcc" type="hidden" name="currentAcc" />
+      <% if(Boolean(JSON.parse(completed))) { %>
+      <input type="checkbox" name="completed" checked="true" />
+      <% } else { %>
+      <input type="checkbox" name="completed" />
+      <% } %>
+
+      <input type="hidden" name="todo_id" value="<%= todo_id %>" />
+      <button type="submit">Update Todo</button>
     </form>
-    <br>
+    <br />
 
     <script>
-        var ethKey = null;
-        (async function() {
-          ethKey = await window.ethereum.request({ method: 'eth_requestAccounts' })
-          console.log(ethKey)
-          document.getElementById("currentAcc").value = ethKey[0]
-  
-        })()
-      </script>
-
-
-</body>
-
+      var ethKey = null;
+      (async function () {
+        ethKey = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        console.log(ethKey);
+        document.getElementById("currentAcc").value = ethKey[0];
+      })();
+    </script>
+  </body>
 </html>
