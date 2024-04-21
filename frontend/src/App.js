@@ -13,7 +13,7 @@ import SingleRecipe from "./views/SingleRecipe";
 import "./App.css";
 
 function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState();
 
   useEffect(() => {
     getTokenStatus();
