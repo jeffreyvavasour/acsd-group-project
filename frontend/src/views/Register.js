@@ -25,6 +25,10 @@ function Register(props) {
   // posts data to backend /users/register
   async function handleSubmit(e) {
     e.preventDefault();
+    if (!username || !password) {
+      setMessage("Please enter details");
+      return;
+    }
     try {
       var outgoingData = await axios.post(
         "http://localhost:8080/users/register",

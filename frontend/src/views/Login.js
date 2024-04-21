@@ -25,6 +25,10 @@ function Login(props) {
   // post data to backend /users/login
   async function handleSubmit(e) {
     e.preventDefault();
+    if (!username || !password) {
+      setMessage("Please enter details");
+      return;
+    }
     try {
       var outgoingData = await axios.post("http://localhost:8080/users/login", {
         username: username,
