@@ -146,12 +146,12 @@ img {
 }
 
 .nav-link {
-  color: rgb(72, 152, 32);
+  color: rgb(72, 152, 32) !important;
   transition: all 0.3s ease-in-out;
 }
 
 .nav-link:hover {
-  color: #82dd55;
+  color: #82dd55 !important;
 }
 
 .form {
