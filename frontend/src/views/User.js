@@ -49,7 +49,13 @@ function User({ loggedIn }) {
       if (userData[username].hasOwnProperty("recipes")) {
         // Find only favorite recipes and save the IDs in the favoriteRecipeIds variable
         favoriteRecipeIds = userData[username].recipes
-          .filter((recipe) => recipe.favorite === true)
+          .filter(
+            (recipe) =>
+              recipe.favorite === true &&
+              recipe.recipeId &&
+              typeof recipe.favorite === "boolean" &&
+              typeof recipe.recipeId === "number"
+          )
           .map((favorites) => favorites.recipeId);
       }
     }
@@ -88,7 +94,12 @@ function User({ loggedIn }) {
       if (userData[username].hasOwnProperty("recipes")) {
         // Find only recipes with notes and map the recipe IDs and notes in the notes variable
         notes = userData[username].recipes
-          .filter((recipe) => recipe.notes)
+          .filter(
+            (recipe) =>
+              recipe?.notes &&
+              typeof recipe?.notes === "string" &&
+              typeof recipe?.recipeId === "number"
+          )
           .map((recipe) => {
             return { recipeId: recipe.recipeId, notes: recipe.notes };
           });

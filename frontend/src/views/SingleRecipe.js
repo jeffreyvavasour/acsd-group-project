@@ -48,8 +48,16 @@ const SingleRecipe = ({ loggedIn }) => {
         if (recipeIndex !== -1) {
           const recipeNotes = userData[username].recipes[recipeIndex].notes;
           if (recipeNotes) {
-            // Update the notes state for this recipe
-            setNotes(recipeNotes);
+            // Validate the notes type
+            if (typeof recipeNotes === "string") {
+              // Update the notes state for this recipe
+              setNotes(recipeNotes);
+            } else {
+              setError({
+                message:
+                  "Couldn't retrieve notes for the recipe. Please clear the cache and try again.",
+              });
+            }
           }
         }
       }
@@ -65,6 +73,13 @@ const SingleRecipe = ({ loggedIn }) => {
   // Function to save the notes for this recipe
   const saveNotes = (e) => {
     e.preventDefault();
+    if (typeof notes !== "string" || typeof recipeId !== "string") {
+      setError({
+        message:
+          "Couldn't save notes for the recipe. Please clear the cache and try again.",
+      });
+    }
+
     let userData = JSON.parse(localStorage.getItem("users"));
     const username = localStorage.getItem("username");
 
