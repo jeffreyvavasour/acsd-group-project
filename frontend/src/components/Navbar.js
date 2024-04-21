@@ -88,7 +88,7 @@ function Navbar(props) {
     // returns nav with Home, Register and Login links if user is not logged in
     return (
       <div id="nav">
-        <nav className="navbar navbar-expand-lg bg-body-tertiary">
+        <nav className="navbar navbar-expand-lg">
           <div className="container-fluid">
             <Link to="/" className="navbar-brand font-alt">
               YummyMoney
